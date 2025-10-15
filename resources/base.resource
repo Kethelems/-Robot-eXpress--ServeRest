@@ -1,6 +1,5 @@
 *** Settings ***
 Library    Browser
-
 Resource    env.robot
 
 *** Keywords ***
@@ -14,3 +13,4 @@ End Session
 Access ServeRest API
     [Arguments]    ${url}
     Go To    ${url}
+

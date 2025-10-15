@@ -1,2 +1,5 @@
 venv/
-*.log
+log.*
+output.*
+playwright-log.txt
+report.*
