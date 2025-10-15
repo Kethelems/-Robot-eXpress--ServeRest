@@ -1,0 +1,19 @@
+{
+    "product_found":
+    {
+        "usuario":
+        {
+            "nome": "Fulano da Silva",
+            "email": "fulano@qa.com.br",
+            "password": "teste",
+            "administrador": "true"
+        },
+        "produto":
+        {
+            "nome": "Playstation 5",
+            "preco": "4500",
+            "descricao": "Um console",
+            "quantidade": "10"
+        }
+    }
+}
