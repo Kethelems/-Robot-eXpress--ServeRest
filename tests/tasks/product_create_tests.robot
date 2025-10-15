@@ -1,25 +1,33 @@
 *** Settings ***
-Resource    ../../resources/base.resource
-
-Test Setup        Start Session
-Test Teardown     End Session
+Library    Browser
 
 *** Test Cases ***
 UN-91 - Cenário produto cadastrado com sucesso
     [Documentation]    Testa o cadastro de produto com dados válidos
     [Tags]    produto    cadastro    sucesso
     
-    Go To    https://front.serverest.dev/login
-    Fill Text    input[name="email"]    fulano@qa.com
-    Fill Text    input[name="password"]    teste
-    Click    xpath=//button[text()='Entrar']
+    ${random}=    Evaluate    random.randint(1000, 9999)    modules=random
     
-    Click    xpath=//a[text()='Cadastrar Produtos']
-    Fill Text    input[name="nome"]    Produto Teste Automatizado
-    Fill Text    input[name="preco"]    100
-    Fill Text    input[name="descricao"]    Produto criado via automação
-    Fill Text    input[name="quantidade"]    10
+    New Browser    chromium    headless=false
+    New Page    https://front.serverest.dev/login
     
-    Click    xpath=//button[text()='Cadastrar']
+    Fill Text    css=input[name="email"]    fulano@qa.com
+    Fill Text    css=input[name="password"]    teste
+    Click    css=button[type="submit"]
     
-    Wait For Elements State    xpath=//div[contains(@class, 'alert-success')]    visible    5s
+    Wait For Elements State    css=[data-testid="cadastrarProdutos"]    visible    10s
+    Click    css=[data-testid="cadastrarProdutos"]
+    
+    Wait For Elements State    css=[data-testid="nome"]    visible    10s
+    Fill Text    css=[data-testid="nome"]    Produto Teste ${random}
+    Fill Text    css=[data-testid="preco"]    100
+    Fill Text    css=[data-testid="descricao"]    Descrição do produto teste
+    
+    Wait For Elements State    css=[data-testid="quantity"]    visible    5s
+    Fill Text    css=[data-testid="quantity"]    ${random}
+    
+    Click    css=[data-testid="cadastarProdutos"]
+    
+    Wait For Elements State    xpath=//h1[contains(text(), 'Lista dos Produtos')]    visible    10s
+    
+    Close Browser
