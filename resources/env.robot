@@ -1,2 +1,3 @@
 *** Variables ***
-${BASE_URL}        http://localhost:3000
+${BASE_URL}        http://localhost:3001
+${API_URL}         http://localhost:3000
