@@ -1,2 +1,2 @@
 *** Variables ***
-${BASE_URL}        http://localhost:3000
+${BASE_URL}        https://front.serverest.dev

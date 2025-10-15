@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.12.2 on win32)" generated="2025-10-15T15:10:34.742684" rpa="false" schemaversion="5">
+<suite id="s1" name="Produto Cadastro Test" source="c:\Users\bauer\OneDrive\Área de Trabalho\-Robot-eXpress--ServeRest\tests\tasks\produto_cadastro_test.robot">
+<test id="s1-t1" name="UN-91 - Cenário produto cadastrado com sucesso" line="8">
+<kw name="Start Session" owner="base" type="SETUP">
+<kw name="New Browser" owner="Browser">
+<msg time="2025-10-15T15:10:35.406842" level="INFO">{"browser": "chromium", "headless": false, "chromiumSandbox": false, "devtools": false, "handleSIGHUP": true, "handleSIGINT": true, "handleSIGTERM": true, "slowMo": 0.0, "timeout": 30000.0, "tracesDir": "c:\\Users\\bauer\\OneDrive\\\u00c1rea de Trabalho\\-Robot-eXpress--ServeRest\\browser\\traces\\temp\\6852b435-f4ae-4dea-b092-a9b8e6c0aab1"}</msg>
+<msg time="2025-10-15T15:10:35.445458" level="INFO">Starting Browser process C:\Users\bauer\AppData\Local\Programs\Python\Python312\Lib\site-packages\Browser\wrapper\index.js using at 127.0.0.1:51966</msg>
+<msg time="2025-10-15T15:10:37.410933" level="INFO">Successfully created browser with options: {"browser":"chromium","headless":false,"chromiumSandbox":false,"devtools":false,"handleSIGHUP":true,"handleSIGINT":true,"handleSIGTERM":true,"slowMo":0,"timeout":30000,"tracesDir":"c:\\Users\\bauer\\OneDrive\\Área de Trabalho\\-Robot-eXpress--ServeRest\\browser\\traces\\temp\\6852b435-f4ae-4dea-b092-a9b8e6c0aab1"}</msg>
+<arg>chromium</arg>
+<arg>headless=false</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Create a new playwright Browser with specified options.</doc>
+<status status="PASS" start="2025-10-15T15:10:35.404842" elapsed="2.007664"/>
+</kw>
+<kw name="New Page" owner="Browser">
+<msg time="2025-10-15T15:10:40.815460" level="INFO">Successfully initialized new page object and opened url: https://front.serverest.dev</msg>
+<msg time="2025-10-15T15:10:40.815460" level="INFO">No context was open. New context was automatically opened when this page is created.</msg>
+<arg>${BASE_URL}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2025-10-15T15:10:37.412506" elapsed="3.402954"/>
+</kw>
+<status status="PASS" start="2025-10-15T15:10:35.402967" elapsed="5.412493"/>
+</kw>
+<kw name="Get Time" owner="BuiltIn">
+<msg time="2025-10-15T15:10:40.816459" level="INFO">${timestamp} = 1760551840</msg>
+<var>${timestamp}</var>
+<arg>epoch</arg>
+<doc>Returns the given time in the requested format.</doc>
+<status status="PASS" start="2025-10-15T15:10:40.815460" elapsed="0.000999"/>
+</kw>
+<kw name="Cadastrar Produto Com Sucesso" owner="produto_keywords">
+<kw name="Fazer Login No Sistema" owner="produto_keywords">
+<kw name="Obter Credenciais Fixas" owner="usuario_page">
+<return>
+<value>fulano@qa.com</value>
+<value>teste</value>
+<status status="PASS" start="2025-10-15T15:10:40.817458" elapsed="0.000000"/>
+</return>
+<msg time="2025-10-15T15:10:40.818458" level="INFO">${email} = fulano@qa.com</msg>
+<msg time="2025-10-15T15:10:40.818458" level="INFO">${password} = teste</msg>
+<var>${email}</var>
+<var>${password}</var>
+<status status="PASS" start="2025-10-15T15:10:40.817458" elapsed="0.001000"/>
+</kw>
+<kw name="Login With Valid Credentials" owner="login_page">
+<kw name="Go To" owner="Browser">
+<msg time="2025-10-15T15:10:41.456204" level="INFO">Successfully opened URL https://front.serverest.dev/login</msg>
+<arg>${BASE_URL}/login</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Navigates to the given ``url``.</doc>
+<status status="PASS" start="2025-10-15T15:10:40.819457" elapsed="0.636747"/>
+</kw>
+<kw name="Wait For Load State" owner="Browser">
+<msg time="2025-10-15T15:10:41.457202" level="INFO">Waiting page load to state to receive networkidle in 10000.0</msg>
+<msg time="2025-10-15T15:10:42.156090" level="INFO">Load state networkidle got in 10000</msg>
+<arg>networkidle</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits that the page reaches the required load state.</doc>
+<status status="PASS" start="2025-10-15T15:10:41.456204" elapsed="0.700884"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-10-15T15:10:42.158089" level="INFO">Fills the text 'fulano@qa.com' in the given field.</msg>
+<arg>css=[data-testid="email"]</arg>
+<arg>${email}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-10-15T15:10:42.157088" elapsed="0.068744"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-10-15T15:10:42.228396" level="INFO">Fills the text 'teste' in the given field.</msg>
+<arg>css=[data-testid="senha"]</arg>
+<arg>${password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-10-15T15:10:42.227200" elapsed="0.025318"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-10-15T15:10:42.254617" level="INFO">Clicks the element 'css=[data-testid="entrar"]'.</msg>
+<arg>css=[data-testid="entrar"]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-10-15T15:10:42.252518" elapsed="0.055834"/>
+</kw>
+<kw name="Wait For Load State" owner="Browser">
+<msg time="2025-10-15T15:10:42.308352" level="INFO">Waiting page load to state to receive networkidle in 10000.0</msg>
+<msg time="2025-10-15T15:10:42.317230" level="INFO">Load state networkidle got in 10000</msg>
+<arg>networkidle</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits that the page reaches the required load state.</doc>
+<status status="PASS" start="2025-10-15T15:10:42.308352" elapsed="0.008878"/>
+</kw>
+<kw name="Get Text" owner="Browser">
+<msg time="2025-10-15T15:10:43.197493" level="INFO">Text: 'Bem Vindo teste'</msg>
+<arg>text=Bem Vindo teste</arg>
+<arg>==</arg>
+<arg>Bem Vindo teste</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2025-10-15T15:10:42.318239" elapsed="0.879958"/>
+</kw>
+<arg>${email}</arg>
+<arg>${password}</arg>
+<status status="PASS" start="2025-10-15T15:10:40.818458" elapsed="2.380035"/>
+</kw>
+<status status="PASS" start="2025-10-15T15:10:40.816459" elapsed="2.382034"/>
+</kw>
+<kw name="Acessar Cadastro De Produtos" owner="produto_page">
+<kw name="Wait For Load State" owner="Browser">
+<msg time="2025-10-15T15:10:43.201493" level="INFO">Waiting page load to state to receive networkidle in 10000.0</msg>
+<msg time="2025-10-15T15:10:43.204906" level="INFO">Load state networkidle got in 10000</msg>
+<arg>networkidle</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits that the page reaches the required load state.</doc>
+<status status="PASS" start="2025-10-15T15:10:43.199493" elapsed="0.005413"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-10-15T15:10:44.205334" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-10-15T15:10:43.204906" elapsed="1.000428"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2025-10-15T15:10:44.205334" level="INFO">Clicks the element 'css=[data-testid="cadastrarProdutos"]'.</msg>
+<arg>css=[data-testid="cadastrarProdutos"]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-10-15T15:10:44.205334" elapsed="0.039841"/>
+</kw>
+<kw name="Wait For Load State" owner="Browser">
+<msg time="2025-10-15T15:10:44.247172" level="INFO">Waiting page load to state to receive networkidle in 10000.0</msg>
+<msg time="2025-10-15T15:10:44.252172" level="INFO">Load state networkidle got in 10000</msg>
+<arg>networkidle</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits that the page reaches the required load state.</doc>
+<status status="PASS" start="2025-10-15T15:10:44.246170" elapsed="0.007004"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-10-15T15:10:45.254393" level="INFO">Slept 1 second.</msg>
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-10-15T15:10:44.253174" elapsed="1.001371"/>
+</kw>
+<status status="PASS" start="2025-10-15T15:10:43.198493" elapsed="2.056052"/>
+</kw>
+<kw name="Preencher Dados Do Produto" owner="produto_page">
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-10-15T15:10:45.254545" level="INFO">Fills the text 'Produto Teste' in the given field.</msg>
+<arg>css=[data-testid="nome"]</arg>
+<arg>${nome}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-10-15T15:10:45.254545" elapsed="0.022369"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-10-15T15:10:45.779037" level="INFO">Slept 500 milliseconds.</msg>
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-10-15T15:10:45.277913" elapsed="0.501124"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-10-15T15:10:45.780043" level="INFO">Fills the text '100' in the given field.</msg>
+<arg>css=[data-testid="preco"]</arg>
+<arg>${preco}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-10-15T15:10:45.779037" elapsed="0.020684"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-10-15T15:10:46.301022" level="INFO">Slept 500 milliseconds.</msg>
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-10-15T15:10:45.799721" elapsed="0.501301"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-10-15T15:10:46.301022" level="INFO">Fills the text 'Descrição do produto teste' in the given field.</msg>
+<arg>css=[data-testid="descricao"]</arg>
+<arg>${descricao}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-10-15T15:10:46.301022" elapsed="0.020032"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-10-15T15:10:46.822261" level="INFO">Slept 500 milliseconds.</msg>
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-10-15T15:10:46.321054" elapsed="0.501207"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2025-10-15T15:10:46.823232" level="INFO">Fills the text '1760551840' in the given field.</msg>
+<arg>css=[data-testid="quantity"]</arg>
+<arg>${quantidade}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2025-10-15T15:10:46.822261" elapsed="0.020693"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-10-15T15:10:47.343728" level="INFO">Slept 500 milliseconds.</msg>
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-10-15T15:10:46.842954" elapsed="0.500774"/>
+</kw>
+<arg>${nome}</arg>
+<arg>${preco}</arg>
+<arg>${descricao}</arg>
+<arg>${quantidade}</arg>
+<status status="PASS" start="2025-10-15T15:10:45.254545" elapsed="2.089183"/>
+</kw>
+<kw name="Cadastrar Produto" owner="produto_page">
+<kw name="Click" owner="Browser">
+<msg time="2025-10-15T15:10:47.343728" level="INFO">Clicks the element 'css=[data-testid="cadastarProdutos"]'.</msg>
+<arg>css=[data-testid="cadastarProdutos"]</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2025-10-15T15:10:47.343728" elapsed="0.034250"/>
+</kw>
+<kw name="Sleep" owner="BuiltIn">
+<msg time="2025-10-15T15:10:49.379086" level="INFO">Slept 2 seconds.</msg>
+<arg>2s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="PASS" start="2025-10-15T15:10:47.377978" elapsed="2.001108"/>
+</kw>
+<kw name="Wait For Load State" owner="Browser">
+<msg time="2025-10-15T15:10:49.380114" level="INFO">Waiting page load to state to receive networkidle in 10000.0</msg>
+<msg time="2025-10-15T15:10:49.382829" level="INFO">Load state networkidle got in 10000</msg>
+<arg>networkidle</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits that the page reaches the required load state.</doc>
+<status status="PASS" start="2025-10-15T15:10:49.379086" elapsed="0.003743"/>
+</kw>
+<status status="PASS" start="2025-10-15T15:10:47.343728" elapsed="2.039101"/>
+</kw>
+<kw name="Verificar Produto Na Lista" owner="produto_page">
+<kw name="Get Text" owner="Browser">
+<msg time="2025-10-15T15:10:49.404822" level="INFO">Text: 'Home\nCadastrar Usuários\nListar Usuários\nCadastrar Produtos\nListar Produtos\nRelatórios\nLogout\nLista dos Produtos\n\nNome\tPreço\tDescrição\tQuantidade\tImagem\tAções\nteste1\t1\tteste1\t1\t\t\nEditar\nExcluir\n\nChicken\t335\tCar\t894\t\t\nEditar\nExcluir\n\nteste\t12\tteste\t12\t\t\nEditar\nExcluir\n\nProduto Teste 1760551515\t100\tDescrição do produto teste\t10\t\t\nEditar\nExcluir\n\nLogitech MX Vertical\t470\tMouse\t382\t\t\nEditar\nExcluir\n\nProduto Para Deletar\t100\tDescricao\t5\t\t\nEditar\nExcluir\n\nSoap\t841\tCar\t211\t\t\nEditar\nExcluir\n\nSamsung 60 polegadas\t5240\tTV\t49977\t\t\nEditar\nExcluir\n\nGiovanna Macedo\t4994\tLaboriosam officiis voluptate odio nihil.\t726\t\t\nEditar\nExcluir\n\niphone 17 pro max\t300\tlaranja\t200\t\t\nEditar\nExcluir\n\nIphone 17 Air\t1500\tbranco\t1000\t\t\nEditar\nExcluir\n\nProduto Teste 1760550704\t100\tDescrição do produto teste\t10\t\t\nEditar\nExcluir\n\nProduto Duplicado 1760549823\t150\tProduto para teste de duplicação\t5\t\t\nEditar\nExcluir\n\nMariah Ramos\t3753\tAlias a odio facilis.\t2801\t\t\nEditar\nExcluir\n\nProduto Duplicado 1760550062\t150\tProduto para teste de duplicação\t5\t\t\nEditar\nExcluir\n\niphone\t2000\tiphone 17\t381\t\t\nEditar\nExcluir\n\nProduto Teste 1760550051\t100\tDescrição do produto teste\t10\t\t\nEditar\nExcluir\n\nProduto Teste 1760549801\t100\tDescrição do produto teste\t10\t\t\nEditar\nExcluir\n\nProduto Duplicado Teste\t150\tProduto para teste de duplicação\t5\t\t\nEditar\nExcluir\n\nBike\t479\tBacon\t782\t\t\nEditar\nExcluir\n\nShirt\t46\tSalad\t904\t\t\nEditar\nExcluir\n\nProduto Teste\t100\tDescrição do produto teste\t1760551840\t\t\nEditar\nExcluir\n\nNotebook Barueri\t1500\tNewbar\t150\t\t\nEditar\nExcluir'</msg>
+<arg>body</arg>
+<arg>contains</arg>
+<arg>${nome_produto}</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns text attribute of the element found by ``selector``.</doc>
+<status status="PASS" start="2025-10-15T15:10:49.382829" elapsed="0.021993"/>
+</kw>
+<arg>${nome}</arg>
+<status status="PASS" start="2025-10-15T15:10:49.382829" elapsed="0.021993"/>
+</kw>
+<arg>Produto Teste</arg>
+<arg>100</arg>
+<arg>Descrição do produto teste</arg>
+<arg>${timestamp}</arg>
+<status status="PASS" start="2025-10-15T15:10:40.816459" elapsed="8.588363"/>
+</kw>
+<kw name="End Session" owner="base" type="TEARDOWN">
+<kw name="Close Browser" owner="Browser">
+<msg time="2025-10-15T15:10:50.065137" level="INFO">Closed browser</msg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-10-15T15:10:49.410349" elapsed="0.655049"/>
+</kw>
+<status status="PASS" start="2025-10-15T15:10:49.404822" elapsed="0.660576"/>
+</kw>
+<doc>Testa o cadastro de produto com dados válidos</doc>
+<tag>cadastro</tag>
+<tag>produto</tag>
+<tag>sucesso</tag>
+<status status="PASS" start="2025-10-15T15:10:35.399967" elapsed="14.665431"/>
+</test>
+<status status="PASS" start="2025-10-15T15:10:34.746017" elapsed="15.326468"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">cadastro</stat>
+<stat pass="1" fail="0" skip="0">produto</stat>
+<stat pass="1" fail="0" skip="0">sucesso</stat>
+</tag>
+<suite>
+<stat name="Produto Cadastro Test" id="s1" pass="1" fail="0" skip="0">Produto Cadastro Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
