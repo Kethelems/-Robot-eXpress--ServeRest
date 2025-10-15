@@ -10,7 +10,7 @@ Resource    keywords/produto_keywords.resource
 *** Keywords ***
 Start Session
     New Browser    chromium    headless=false
-    New Page    ${BASE_URL}
+    New Page    ${WEB_BASE_URL}
 
 End Session
     Close Browser

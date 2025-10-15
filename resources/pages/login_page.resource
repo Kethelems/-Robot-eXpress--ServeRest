@@ -6,7 +6,7 @@ Resource    ../env.robot
 *** Keywords ***
 Login With Valid Credentials
     [Arguments]    ${email}    ${password}
-    Go To    ${BASE_URL}/login
+    Go To    ${WEB_BASE_URL}/login
     Wait For Load State    networkidle
     Fill Text    css=[data-testid="email"]    ${email}
     Fill Text    css=[data-testid="senha"]    ${password}

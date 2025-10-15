@@ -24,7 +24,7 @@ Tentar Cadastrar Produto Duplicado
     Preencher Dados Do Produto    ${nome}    ${preco}    ${descricao}    ${quantidade}
     Cadastrar Produto
     # Voltar e tentar cadastrar o mesmo produto
-    Go To    ${BASE_URL}/admin/home
+    Go To    ${WEB_BASE_URL}/admin/home
     Wait For Load State    networkidle
     Acessar Cadastro De Produtos
     Preencher Dados Do Produto    ${nome}    ${preco}    ${descricao}    ${quantidade}
