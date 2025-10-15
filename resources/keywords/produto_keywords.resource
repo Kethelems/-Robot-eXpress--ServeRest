@@ -4,6 +4,10 @@ Resource    ../pages/login_page.resource
 Resource    ../pages/produto_page.resource
 
 *** Keywords ***
+Start Web Session
+    New Browser    chromium    headless=false
+    New Page    ${WEB_BASE_URL}
+
 Fazer Login No Sistema
     ${email}    ${password}=    Obter Credenciais Fixas
     Login With Valid Credentials    ${email}    ${password}
