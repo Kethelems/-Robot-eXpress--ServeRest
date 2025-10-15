@@ -1,0 +1,50 @@
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Robot Framework outputs
+log.html
+output.xml
+report.html
+log.*
+output.*
+report.*
+results/
+
+# Browser library logs
+playwright-log.txt
+browser/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.webm
+screenshots/
+videos/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
