@@ -10,10 +10,18 @@
         },
         "produto":
         {
-            "nome": "Playstation 5",
+            "nome": "Bananinhas",
             "preco": "4500",
-            "descricao": "Um console",
+            "descricao": "Umas bananas fritas",
             "quantidade": "10"
+        },
+        "carrinho":{
+            "produtos": [
+            {
+                "idProduto": "null",
+                "quantidade": 1
+            }
+            ]
         }
     }
 }

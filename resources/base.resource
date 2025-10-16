@@ -11,6 +11,7 @@ Resource    services.resource
 Start Session
     New Browser    chromium    headless=false
     New Page       ${BASE_URL}
+    DELETE erase user
 
 End Session
     Take Screenshot
