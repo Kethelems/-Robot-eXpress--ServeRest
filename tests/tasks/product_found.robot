@@ -12,14 +12,14 @@ Documentation        Teste do caso de teste UN-93: Cenario Produto Encontrado
 Resource             ../../resources/base.resource
 Resource             ../../resources/online.robot
 
-Test Setup         Start Session
-Test Teardown      End Session
+Suite Setup         Start Session
+Test Teardown       Take Screenshot
+Suite Teardown      End Session
 Library    Collections
 
 *** Test Cases ***
 
 Dado que tenho um usuário administrador préviamente cadastrado
-    DELETE erase user
     POST create user
 
 E fiz login com este usuário administrador obetendo o token

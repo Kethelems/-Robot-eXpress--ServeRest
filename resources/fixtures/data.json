@@ -10,9 +10,9 @@
         },
         "produto":
         {
-            "nome": "Bananinhas",
+            "nome": "Nintendo 64",
             "preco": "4500",
-            "descricao": "Umas bananas fritas",
+            "descricao": "Um console",
             "quantidade": "10"
         },
         "carrinho":{

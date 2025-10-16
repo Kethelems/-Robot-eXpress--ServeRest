@@ -32,14 +32,14 @@ POST create user
 POST user session
     ${alias}                  Set Variable    serverest
     ${url}                    Set Variable    /login
-    ${expected_status}        Set Variable    200
+    ${expected_status}        Set Variable    any
     ${json}                   Get fixture     data    product_found
     
     ${payload}                Create Dictionary    
     ...                       email=${json}[usuario][email]
     ...                       password=${json}[usuario][password]
 
-    Access ServeRest API    ${API_URL}
+#    Access ServeRest API    ${API_URL}
     
     ${response}=           POST On Session
     ...                    alias=${alias}
@@ -47,10 +47,15 @@ POST user session
     ...                    expected_status=${expected_status}
     ...                    json=${payload}
     
-    ${token}        Get Value From Json    ${response.json()}    $..authorization
+    IF    ${response.status_code} == 200
+        ${token}        Get Value From Json    ${response.json()}    $..authorization
+        ${token_string}    Convert To String    ${token}[0]
 
-    Set Global Variable        ${AUTH_TOKEN}    ${token}[0]
-    Log To Console             \ntoken auth:${AUTH_TOKEN}
+        Set Global Variable        ${AUTH_TOKEN}    ${token_string}
+        Log To Console             \ntoken auth:${AUTH_TOKEN}    
+    END
+    
+    RETURN    ${response.status_code}
 
 POST create product
     ${alias}                  Set Variable    serverest
@@ -63,7 +68,7 @@ POST create product
     
     Log To Console    ${headers}
 
-    Access ServeRest API    ${API_URL}
+#    Access ServeRest API    ${API_URL}
     
     ${response}            POST On Session
     ...                    alias=${alias}
@@ -76,7 +81,7 @@ POST create product
     ...                                     $.._id
     ${message}    Get Value From Json       ${response.json()}
     ...                                     $..message
-    Set Test Variable    ${PRODUCT_ID}      ${_id}[0]
+    Set Test Variable    ${PRODUCT_ID}      ${_id}
 
     Should Not Be Empty    ${_id}
     Should Be Equal        Cadastro realizado com sucesso    ${message}[0]
@@ -87,40 +92,11 @@ DELETE erase user
     ${url}                    Set Variable    /carrinhos
     ${expected_status}        Set Variable    200
     ${payload}                Get fixture    data    product_found
-
-    Access ServeRest API    ${API_URL}
-    
-    POST user session    # <---- Faz o login
-
     ${headers}                Create Dictionary    
     ...                       authorization=${AUTH_TOKEN}
 
-#    GET /carrinhos
-#    aqui vem o código para pegar o id do carrinho a ser excluido    
-#    DELETE /carrinhos
-#    aqui vem o código que deleta os carrinhos associados ao user
-
-    ${url}                 Set Variable    /produtos
-
-#    GET /produtos pelo nome
-    ${response}           GET On Session
-    ...                    alias=${alias}
-    ...                    url=${url}?nome=${payload}[produto][nome]
-    ...                    expected_status=${expected_status}
-    ...                    headers=${headers}
-    
-    ${_id}        Get Value From Json       ${response.json()}
-    ...                                     $.produtos[0]._id
-    
-    Set Test Variable        ${PRODUCT_ID}    ${id}[0]    
-    Log To Console    ${PRODUCT_ID}
-
-#    DELETE /produtos
-    ${response}           DELETE On Session
-    ...                    alias=${alias}
-    ...                    url=${url}/${PRODUCT_ID}
-    ...                    expected_status=${expected_status}
-    ...                    headers=${headers}
+#    GET /carrinhos aqui vem o código para pegar o id do carrinho a ser excluido    
+#    DELETE /carrinhos aqui vem o código que deleta os carrinhos associados ao user
     
     ${url}                 Set Variable    /usuarios
 
@@ -131,15 +107,56 @@ DELETE erase user
     ...                    expected_status=${expected_status}
     ...                    headers=${headers}
     
-    ${_id}        Get Value From Json       ${response.json()}
+    ${id}        Get Value From Json       ${response.json()}
     ...                                     $.usuarios[0]._id
+    ...                                     encoding=utf-8
     
-    Set Test Variable        ${USER_ID}    ${id}[0]    
+    Set Test Variable        ${USER_ID}    ${id}
     Log To Console    ${USER_ID}
 
 
     #DELETE /usuarios    
     ${response}=           DELETE On Session
     ...                    alias=${alias}
-    ...                    url=${url}/${USER_ID}
+    ...                    url=${url}/${USER_ID}[0]
     ...                    expected_status=${expected_status}
+
+DELETE erase product
+    ${alias}                  Set Variable    serverest
+    ${url}                    Set Variable    /produtos
+    ${expected_status}        Set Variable    200
+    ${payload}                Get fixture    data    product_found
+    ${headers}                Create Dictionary    
+    ...                       authorization=${AUTH_TOKEN}
+    
+    #    GET /produtos pelo nome
+    ${response}           GET On Session
+    ...                    alias=${alias}
+    ...                    url=${url}?nome=${payload}[produto][nome]
+    ...                    expected_status=${expected_status}
+    ...                    headers=${headers}
+    
+    ${id}        Get Value From Json       ${response.json()}
+    ...                                     $.produtos[0]._id
+    ...                                     encoding=utf-8
+    
+    Set Test Variable        ${PRODUCT_ID}    ${id}
+    Log To Console    ${PRODUCT_ID}
+    
+
+#    DELETE /produtos -> Vamos ter que dar uma keyword sozinha pra ele
+    ${response}           DELETE On Session
+    ...                    alias=${alias}
+    ...                    url=${url}/${PRODUCT_ID}[0]
+    ...                    expected_status=${expected_status}
+    ...                    headers=${headers}
+
+Clean residual data
+    Access ServeRest API    ${API_URL}
+    
+    ${login_status_code}=        POST user session    # <---- Faz o login
+    Log        ${login_status_code}
+    IF    ${login_status_code} == 200
+        DELETE erase user
+        DELETE erase product
+    END
