@@ -1,6 +1,5 @@
 *** Settings ***
-Resource    base.resource
-Resource    env.robot
+Resource    ../base.resource
 
 *** Keywords ***
 
@@ -27,7 +26,7 @@ POST create user
     Should Be Equal        Cadastro realizado com sucesso    ${message}[0]
 
     Set Global Variable        ${USER_ID}    ${_id}[0]
-    Log To Console           \nuser id: ${USER_ID}
+    #Log To Console           \nuser id: ${USER_ID}
 
 POST user session
     ${alias}                  Set Variable    serverest
@@ -52,12 +51,15 @@ POST user session
         ${token_string}    Convert To String    ${token}[0]
 
         Set Global Variable        ${AUTH_TOKEN}    ${token_string}
-        Log To Console             \ntoken auth:${AUTH_TOKEN}    
+        #Log To Console             \ntoken auth:${AUTH_TOKEN}    
     END
     
     RETURN    ${response.status_code}
 
 POST create product
+    
+    POST user session
+    
     ${alias}                  Set Variable    serverest
     ${url}                    Set Variable    /produtos
     ${expected_status}        Set Variable    201
@@ -65,8 +67,6 @@ POST create product
     
     ${headers}                Create Dictionary    
     ...                       authorization=${AUTH_TOKEN}
-    
-    Log To Console    ${headers}
 
 #    Access ServeRest API    ${API_URL}
     
@@ -85,7 +85,7 @@ POST create product
 
     Should Not Be Empty    ${_id}
     Should Be Equal        Cadastro realizado com sucesso    ${message}[0]
-    Log To Console         \nproduct id: ${PRODUCT_ID}
+    #Log To Console         \nproduct id: ${PRODUCT_ID}
 
 DELETE erase user
     ${alias}                  Set Variable    serverest
@@ -112,7 +112,7 @@ DELETE erase user
     ...                                     encoding=utf-8
     
     Set Test Variable        ${USER_ID}    ${id}
-    Log To Console    ${USER_ID}
+    #Log To Console    Usuário a ser deletado: ${USER_ID}
 
 
     #DELETE /usuarios    
@@ -141,7 +141,7 @@ DELETE erase product
     ...                                     encoding=utf-8
     
     Set Test Variable        ${PRODUCT_ID}    ${id}
-    Log To Console    ${PRODUCT_ID}
+    #Log To Console    Produto a ser deletado: ${PRODUCT_ID}
     
 
 #    DELETE /produtos -> Vamos ter que dar uma keyword sozinha pra ele
@@ -157,6 +157,6 @@ Clean residual data
     ${login_status_code}=        POST user session    # <---- Faz o login
     Log        ${login_status_code}
     IF    ${login_status_code} == 200
-        DELETE erase user
         DELETE erase product
+        DELETE erase user
     END

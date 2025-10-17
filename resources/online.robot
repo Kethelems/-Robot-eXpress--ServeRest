@@ -1,6 +1,5 @@
 *** Settings ***
 Resource    base.resource
-Resource    env.robot
 
 *** Keywords ***
 Test API Connectivity

@@ -1,6 +1,6 @@
 *** Settings ***
-Resource    ../../resources/base.resource
-Resource    ../../resources/online.robot
+Resource    ../resources/base.resource
+Resource    ../resources/online.robot
 
 Suite Setup       Start Session
 Suite Teardown    End Session

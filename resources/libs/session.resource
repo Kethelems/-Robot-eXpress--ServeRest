@@ -1,11 +1,11 @@
-*** Settings ***
-Documentation
-Library    Browser
+#*** Settings ***
+#Documentation
+#Library    Browser
 
-Resource    ../env.robot
+#Resource    ../env/env.robot
 
-*** Keywords ***
-Start Session
-    New Browser    chromium    headless=false
-    New Page       ${BASE_URL}
+#*** Keywords ***
+#Start Session
+#    New Browser    chromium    headless=false
+#    New Page       ${BASE_URL}
 

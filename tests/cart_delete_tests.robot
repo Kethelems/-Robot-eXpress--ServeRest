@@ -1,12 +1,12 @@
 *** Settings ***
-Resource    ../../resources/base.resource
+Resource    ../resources/base.resource
 
 Suite Setup       Start Session
 Suite Teardown    End Session
 
 *** Test Cases ***
-Create Cart Successfully
-    [Documentation]    Cenário: Carrinho cadastrado com sucesso
+Delete Cart Successfully
+    [Documentation]    Cenário: Carrinho deletado com sucesso
     
     Go To    ${BASE_URL}
     Click    xpath=//a[text()='Login']
@@ -15,5 +15,6 @@ Create Cart Successfully
     Click    xpath=//button[text()='Entrar']
     Click    xpath=//button[contains(text(), 'Adicionar')][1]
     Click    xpath=//a[contains(text(), 'Lista de Compras')]
-    Wait For Elements State    xpath=//h1[contains(text(), 'Lista de Compras')]    visible    5s
-    Get Text    xpath=//tbody//td    should not be empty
+    Click    xpath=//button[contains(text(), 'Cancelar Compra')]
+    Wait For Elements State    xpath=//div[contains(@class, 'alert')]    visible    5s
+    Get Text    xpath=//div[contains(@class, 'alert')]    should contain    Compra cancelada com sucesso
