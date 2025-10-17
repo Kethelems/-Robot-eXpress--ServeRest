@@ -4,8 +4,12 @@ Library    RequestsLibrary
 Library    JSONLibrary
 Library    Collections
 
-Resource    env.robot
-Resource    services.resource
+Resource    env/env.robot
+
+Resource    services/api.resource
+Resource    pages/SignInPage.resource
+Resource    pages/HomePage.resource
+Resource    pages/ProductListPage.resource
 
 *** Keywords ***
 Start Session

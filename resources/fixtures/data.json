@@ -10,7 +10,7 @@
         },
         "produto":
         {
-            "nome": "Nintendo 64",
+            "nome": "Nintendo DS",
             "preco": "4500",
             "descricao": "Um console",
             "quantidade": "10"
